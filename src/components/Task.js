@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default function Task({ task: {id, title, state }, onArchiveTask, onPinTask }) {
   return (
@@ -44,4 +45,24 @@ export default function Task({ task: {id, title, state }, onArchiveTask, onPinTa
       )}
     </div>
   );
+};
+
+/*Specificare i requisiti dei dati
+È consigliabile utilizzare propTypes in React per specificare la forma dei dati che si aspetta
+ un componente. Non solo si auto-documenta, ma aiuta anche a individuare i problemi in anticipo. */
+
+Task.propTypes = {
+  //composition of the task
+  task: PropTypes.shape({
+    //Id of the task
+    id: PropTypes.string.isRequired,
+    //Title of the task
+    title: PropTypes.string.isRequired,
+    //Current state of the task
+    state: PropTypes.string.isRequired,
+  }),
+  //Event to change the task to archived
+  onArchiveTask: PropTypes.func,
+  // Event to change the task to pinned
+  onPinTask: PropTypes.func,
 };
